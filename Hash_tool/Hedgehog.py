@@ -1,15 +1,24 @@
 
 import hashlib
 
-targetHash = "1234"
-hashReady = bytes(targetHash.encode('utf-8'))
-h = hashlib.sha256(hashReady).hexdigest()
+i = input()
 
-file = open("passToHash.txt", "r")
+with open("passToHash", "r") as file:
+    for line in file.readlines():
+        h = hashlib.sha256(line.encode('utf-8')).hexdigest()
+        if h == i:
+            print(f"the right password: {line}")
+            break
+        else:
+            print("0")
 
-for line in file.readlines():
-    h2 = hashlib.sha256(b"1234").hexdigest()
-    if h == h2:
-        print("yay")
-    else:
-        pass
+# So i finnaly know what the problem is :))))
+# when function reads text files instead of passing it one by one, it mashes everything together
+#
+# I want this:
+# "kapi"
+# "ja"
+# "ty"
+#
+# But it do this instead:
+# "kapijaty"
