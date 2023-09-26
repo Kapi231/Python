@@ -8,6 +8,7 @@ with open("passwordList.txt", "r") as file:
     for line in file.readlines():
         word = line.split()
         h = hashlib.sha256(word[0].encode('utf-8')).hexdigest()
+        print(h)
         if h == i:
             print(f"Password: {line}")
             break
