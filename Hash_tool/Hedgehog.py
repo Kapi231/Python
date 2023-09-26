@@ -1,24 +1,15 @@
 
 import hashlib
 
-i = input()
+i = input("Hash: ")
 
-with open("passToHash", "r") as file:
+# Main function is working but i need to give it a way to chose what type of hash it is.
+with open("passwordList.txt", "r") as file:
     for line in file.readlines():
-        h = hashlib.sha256(line.encode('utf-8')).hexdigest()
+        word = line.split()
+        h = hashlib.sha256(word[0].encode('utf-8')).hexdigest()
         if h == i:
-            print(f"the right password: {line}")
+            print(f"Password: {line}")
             break
         else:
-            print("0")
-
-# So i finnaly know what the problem is :))))
-# when function reads text files instead of passing it one by one, it mashes everything together
-#
-# I want this:
-# "kapi"
-# "ja"
-# "ty"
-#
-# But it do this instead:
-# "kapijaty"
+            pass
