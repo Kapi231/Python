@@ -4,7 +4,7 @@ import pygame
 import sys
 
 pygame.mixer.init()
-song = pygame.mixer.Sound("fnaf_song.mp3")
+song = pygame.mixer.Sound("assets/fnaf_song.mp3")
 pygame.mixer.find_channel().play(song, loops=-1)
 
 
@@ -21,10 +21,10 @@ class MainWindow(QMainWindow):
         label3 = QLabel(self)
         label4 = QLabel(self)
 
-        movie = QMovie('freddy.gif')
-        movie2 = QMovie('freddy2.gif')
-        movie3 = QMovie('freddy3.gif')
-        movie4 = QMovie('purple_guy.gif')
+        movie = QMovie('assets/freddy.gif')
+        movie2 = QMovie('assets/freddy2.gif')
+        movie3 = QMovie('assets/freddy3.gif')
+        movie4 = QMovie('assets/purple_guy.gif')
 
         label.setMovie(movie)
         label2.setMovie(movie2)
@@ -51,5 +51,3 @@ app = QApplication(sys.argv)
 w = MainWindow()
 w.show()
 app.exec()
-
-
