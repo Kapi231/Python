@@ -9,6 +9,7 @@ print(f"[*] server run on {server_ip}:{bind_port}")
 
 while 1:
     
+    #message sending
     data, addr = server.recvfrom(1024)
     print(f"[*] user: {data.decode()}")
     
