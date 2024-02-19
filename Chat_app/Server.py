@@ -8,8 +8,6 @@ server_port = 9998
 server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 def main():
-
-    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server.bind((server_ip, server_port))
     print(f"[*] server on {server_ip}:{server_port}")
 
@@ -22,13 +20,11 @@ def message_maintainer():
     server.sendto(data, addr)
 
 def procceses():
-
     p1 = Process(target=message_maintainer())
 
     p1.start()
 
 if __name__ == '__main__':
-
     main() 
 
     while 1:
