@@ -3,10 +3,9 @@ import socket, sys
 ip = "127.0.0.1"
 port = 9998
 
+username = input("[*] how other users should call you? \n   --> ")
 client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 client.connect((ip, port))
-
-username = input("[*] how other users should call you? \n   --> ")
 
 if username != "" and len(username) >= 4:
     print(f"[*] Hi {username}")
@@ -20,6 +19,7 @@ while 1:
 
     # send message to server
     text = input(">>> ")
+
     if text == "/exit":
         sys.exit()
 
