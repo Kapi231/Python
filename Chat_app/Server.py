@@ -19,8 +19,7 @@ def message_maintainer():
     print(f"[*] packet from {addr} :: {data.decode()}")
 
     # send text back
-    server.connect(addr)
-    server.send(data)
+    server.sendto(data, addr)
 
 def procceses():
 

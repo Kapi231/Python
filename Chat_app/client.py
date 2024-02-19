@@ -5,7 +5,6 @@ port = 9998
 
 username = input("[*] how other users should call you? \n   --> ")
 client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-client.connect((ip, port))
 
 if username != "" and len(username) >= 4:
     print(f"[*] Hi {username}")
@@ -24,6 +23,6 @@ while 1:
         sys.exit()
 
     # receive messages form server
-    client.send(f"{username}: {text}".encode())
+    client.sendto(f"{username}: {text}".encode(), (ip, port))
     mess, addr = client.recvfrom(4096)
     print(mess.decode())
