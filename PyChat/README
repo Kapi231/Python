@@ -1,0 +1,8 @@
+Chat app using UDP protocol
+
+commands for user:
+/exit - exit app
+
+commands for admin:
+?shutdown - shutdowns server
+?clear - clears chat log (chat_log.txt)
