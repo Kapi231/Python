@@ -6,16 +6,26 @@ def main():
     # receive packets from users
     data, (addr, port) = server.recvfrom(4096)
     print(f"[*] packet from {addr}:{port} :: {data.decode()}")
-    
+    log_append(data.decode())
+
     #checks if command is send from privilaged user, not good security...
     if data.decode() == f"{server_admin}: ?shutdown" and addr == server_ip:
         server.sendto(b'[*] Closing server\n[*] Disconnecting...', (addr, port))
         server.close()
         sys.exit()
+
+    elif data.decode() == f"{server_admin}: ?clear" and addr == server_ip:
+        with open('chat_log.txt', 'w') as file:
+            file.write("<===Chat===>\n")
+            server.sendto(b'[*] Chat log cleared', (addr, port))
  
     else:
         # send text back
         server.sendto(data, (addr, port))
+
+def log_append(text):
+    with open('chat_log.txt', 'a') as file:
+        file.writelines(f"{text}\n")
 
 if __name__ == '__main__':
 
