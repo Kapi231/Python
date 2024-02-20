@@ -1,8 +1,12 @@
 import socket, sys
 
+print("<==========CHAT APP==========>\n")
+help = " ? - admin command\n / - user command\n ?shutdown - close server\n /exit - exit app"
+print(help)
+
 server_addr = ("127.0.0.1", 9998)
 
-username = input("[*] how other users should call you? \n   --> ")
+username = input("\n[*] how other users should call you? \n   --> ")
 client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 if username != "" and len(username) >= 4:
@@ -12,6 +16,18 @@ if username != "" and len(username) >= 4:
 else:
     print("[*] invalid username!")
     sys.exit()
+
+def switch(command):
+
+    if command == "/help":
+        print(help)
+
+    elif command == "/exit":
+        print("[*] Closing app")
+        sys.exit()
+
+    else:
+        pass
 
 def sending_and_reciving():
     # send message to server
