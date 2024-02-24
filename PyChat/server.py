@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
     print("<==========CHAT APP SEVER==========>\n")
 
-    server_ip = "127.0.0.1"
+    server_ip = "0.0.0.0" # set server IP
     server_port = 9998
     server_admin = "admin" # username privilaged to close server (line 21)
 

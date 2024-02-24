@@ -5,10 +5,15 @@ def log_request():
     #requesting chat log to have live chat
     while 1:
         try:
-            time.sleep(3)
+            time.sleep(2) # lower sleep time to faster chat refresh
             client.sendto("<data_request>".encode(), server_addr)
             log, addr = client.recvfrom(4096)
-            os.system("cls")
+
+            if os.name == 'nt':
+                os.system("cls")
+            else:
+                os.system("clear")
+
             print(log.decode())
 
         except:
@@ -29,8 +34,11 @@ def main():
     text = getpass.getpass("")
     if text == "/exit":
         sys.exit()
-
-    os.system("cls")
+    
+    if os.name == 'nt':
+        os.system("cls")
+    else:
+        os.system("clear")
 
     try:
         client.sendto(f"{username}: {text}".encode(), server_addr)
@@ -47,7 +55,9 @@ if __name__ == '__main__':
     print(" ? - admin command\n / - user command\n ?shutdown - close server\n /exit - exit app")
     getpass.getpass("\n[*] Press any key to continue")
 
-    server_addr = ("127.0.0.1", 9998)
+    server_ip = input("Provide server IP: ")
+
+    server_addr = (server_ip, 9998)
 
     username = input("\n[*] how other users should call you? \n   --> ")
     client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
